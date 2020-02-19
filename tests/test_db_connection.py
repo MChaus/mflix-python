@@ -14,7 +14,7 @@ def get_coll_names(config):
     Method used in unit tests. Do not alter. You can cheat, but you only defeat
     yourself.
     """
-    db = MongoClient(config['MFLIX_DB_URI'])["mflix"]
+    db = MongoClient(config['MFLIX_DB_URI'])["sample_mflix"]
     return db.list_collection_names()
 
 
@@ -29,17 +29,17 @@ def test_atlas_setup(client, config):
 @pytest.mark.connection
 def test_basic_movies(client):
     (actual, num_found) = get_movies({}, 0, 20)
-    assert num_found == 45993
+    assert num_found == 23539
     assert(len(list(actual))) == 20
 
 
 @pytest.mark.connection
 def test_search_by_movie_id(client):
-    actual = get_movie("573a13eff29313caabdd82f3")
-    assert actual['title'] == 'The Martian'
+    actual = get_movie("573a13acf29313caabd29647")
+    assert actual['title'] == 'King Kong'
 
 
 @pytest.mark.connection
 def test_simple_text_search(client):
-    (actual, _) = get_movies({"$text": {"$search": "The Martian"}}, 0, 20)
+    (actual, _) = get_movies({"$text": {"$search": "King Kong"}}, 0, 20)
     assert len(list(actual)) >= 4

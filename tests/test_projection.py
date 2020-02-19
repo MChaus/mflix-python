@@ -19,7 +19,7 @@ def test_basic_country_search_db(client):
 def test_basic_country_search_shape_db(client):
     countries = ['Russia', 'Japan']
     result = get_movies_by_country(countries)
-    assert len(result) == 2420
+    assert len(result) == 1237
     # we should only be returning the _id and title fields
     encountered_keys = {}
     for movie in result:
@@ -27,5 +27,5 @@ def test_basic_country_search_shape_db(client):
             encountered_keys[k] = encountered_keys.get(k, 0) + 1
 
     assert len(list(encountered_keys.keys())) == 2
-    assert encountered_keys['_id'] == 2420
-    assert encountered_keys['title'] == 2420
+    assert encountered_keys['_id'] == 1237
+    assert encountered_keys['title'] == 1237

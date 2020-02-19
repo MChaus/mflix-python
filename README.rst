@@ -68,8 +68,8 @@ You can deactivate the environment with the following command:
 
 **Installing Anaconda for Windows**
 
-You can download Anaconda from their `Windows download site
-<https://www.anaconda.com/download/#windows>`_.
+You can download Anaconda from their `Download site
+<https://www.anaconda.com/download/>`_. Please be careful to select ``Windows Tab`` before downloading.
 
 The Anaconda installer will prompt you to *Add Anaconda to your PATH*. Select
 this option to use ``conda`` commands from the Command Prompt.
@@ -229,7 +229,7 @@ Creating a free tier cluster called "mflix":
 
 
 2. Choose AWS as the cloud provider, in a Region that has the label
-   ``Free Tier Available``:
+   ``FREE TIER AVAILABLE``:
 
 .. image:: https://s3.amazonaws.com/university-courses/m220/cluster_provider.png
 
@@ -252,18 +252,15 @@ Creating a free tier cluster called "mflix":
 .. image:: https://s3.amazonaws.com/university-courses/m220/cluster_project.png
 
 
-6. Next, configure the security settings of this cluster, by enabling the *IP
-   Whitelist* and *MongoDB Users*:
+6. Configure the network settings of this cluster in the **Network Access** tab,
+   so you can connect from your IP address. When you select ``ADD IP ADDRESS``,
+   the menu that appears may give you the option to add ``ADD CURRENT IP
+   ADDRESS``. This is preferable, but if this option does not appear, please
+   select ``ALLOW ACCESS FROM ANYWHERE``:
 
-.. image:: https://s3.amazonaws.com/university-courses/m220/cluster_ipwhitelisting.png
+.. image:: https://s3.amazonaws.com/university-courses/m220/whitelist_an_ip_address.png
 
-Update your IP Whitelist so that your app can talk to the cluster. Click the
-"Security" tab from the "Clusters" page. Then click "IP Whitelist" followed by
-"Add IP Address". Finally, click "Allow Access from Anywhere" and click
-"Confirm".
-
-.. image:: https://s3.amazonaws.com/university-courses/m220/cluster_allowall.png
-
+.. image:: https://s3.amazonaws.com/university-courses/m220/add_whitelist_entry.png
 
 7. Then create the application MongoDB database user required for this course:
 
@@ -277,15 +274,24 @@ Allow this user the privilege to ``Read and write to any database``:
 .. image:: https://s3.amazonaws.com/university-courses/m220/cluster_application_user.png
 
 
-8. When the user is created, and the cluster deployed, you can test the setup by
+8. When the user is created, and the cluster deployed, you have the option to
+   ``Load Sample Dataset``. This will load the Atlas sample dataset, containing
+   the MFlix database, into your cluster:
+
+.. image:: https://s3.amazonaws.com/university-courses/m220/load_sample_dataset.png
+
+**Note: The MFlix database in the Sample Dataset is called "sample_mflix".**
+
+
+9. Now you can test the setup by
    connecting via ``mongo`` shell. You can find instructions to connect in the
    "Connect" section of the cluster dashboard:
 
 .. image:: https://s3.amazonaws.com/university-courses/m220/cluster_connect_application.png
 
-Go to your cluster *Overview*  -> *Connect* -> *Connect Your Application*.
-Select the option corresponding to your local MongoDB version and copy the
-``mongo`` connection command.
+Go to your cluster *Overview* -> *Connect* -> *Connect Your Application*. Select
+the option corresponding to your local MongoDB version and copy the ``mongo``
+connection string.
 
 The below example connects to Atlas as the user you created before, with
 username ``m220student`` and password ``m220password``. You can run this command
@@ -298,9 +304,16 @@ from your command line:
 By connecting to the server from your host machine, you have validated that the
 cluster is configured and reachable from your local workstation.
 
+The connection string you used to connect will be used in your MFlix application
+as well.
 
-Importing Data
---------------
+
+Importing Data (Optional)
+-------------------------
+
+**Note: if you used Load Sample Dataset, you can skip this step.**
+
+**Note: if you used Load Sample Dataset, you can skip this step.**
 
 The ``mongorestore`` command necessary to import the data is located below. Copy
 and paste the command, and replace ``<your-atlas-uri>`` with your Atlas SRV

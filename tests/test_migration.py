@@ -11,5 +11,5 @@ import pytest
 
 @pytest.mark.migration
 def test_proper_type(client):
-    result = get_movie("573a1391f29313caabcd8526")
+    result = get_movie("573a13b8f29313caabd4c8c5")
     assert isinstance(result.get('lastupdated'), datetime)

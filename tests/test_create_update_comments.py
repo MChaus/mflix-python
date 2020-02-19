@@ -19,8 +19,8 @@ fake_user = {
     "name": "barfoo",
     "email": "baz@foobar.com"
 }
-# The Martian
-movie_id = "573a13eff29313caabdd82f3"
+# School of Rock
+movie_id = "573a13aaf29313caabd22abb"
 now = datetime.now()
 comment = {
     'text': 'fe-fi-fo-fum',

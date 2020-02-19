@@ -12,7 +12,7 @@ Look out for TODO markers for additional help. Good luck!
 from flask import current_app, g
 from werkzeug.local import LocalProxy
 
-from pymongo import MongoClient, DESCENDING
+from pymongo import MongoClient, DESCENDING, ASCENDING
 from pymongo.write_concern import WriteConcern
 from pymongo.errors import DuplicateKeyError, OperationFailure
 from bson.objectid import ObjectId
@@ -26,6 +26,7 @@ def get_db():
     """
     db = getattr(g, "_database", None)
     MFLIX_DB_URI = current_app.config["MFLIX_DB_URI"]
+    MFLIX_DB_NAME = current_app.config["MFLIX_NS"]
     if db is None:
 
         """
@@ -48,7 +49,7 @@ def get_db():
         # Set the maximum connection pool size to 50 active connections.
         # TODO: Timeouts
         # Set the write timeout limit to 2500 milliseconds.
-        )["mflix"]
+        )[MFLIX_DB_NAME]
     return db
 
 
@@ -173,7 +174,7 @@ def build_query_sort_project(filters):
     # to display on the front page of MFlix, because they are famous or
     # aesthetically pleasing. When we sort on it, the movies containing this
     # field will be displayed at the top of the page.
-    sort = [("tomatoes.viewer.numReviews", DESCENDING)]
+    sort = [("tomatoes.viewer.numReviews", DESCENDING), ("_id", ASCENDING)]
     project = None
     if filters:
         if "text" in filters:

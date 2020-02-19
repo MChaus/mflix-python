@@ -15,7 +15,10 @@ us. We just need to make sure the correct operations are sent to MongoDB!
 
 # ensure you update your host information below!
 host = "mongodb://localhost:27017"
-mflix = MongoClient(host)["mflix"]
+
+# don't update this information
+MFLIX_DB_NAME = "sample_mflix"
+mflix = MongoClient(host)[MFLIX_DB_NAME]
 
 # TODO: Create the proper predicate and projection
 # add a predicate that checks that the "lastupdated" field exists, and then

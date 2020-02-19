@@ -11,10 +11,10 @@ import pytest
 
 @pytest.mark.get_comments
 def test_fetch_comments_for_movie(client):
-    # Once Upon a Time in Mexico
-    movie_id = "573a13a6f29313caabd17bd5"
+    # Lady and the Tramp
+    movie_id = "573a1394f29313caabcdfd61"
     result = get_movie(movie_id)
-    assert len(result.get('comments', [])) == 2
+    assert len(result.get('comments', [])) == 126
 
 
 @pytest.mark.get_comments
@@ -22,7 +22,7 @@ def test_fetch_comments_for_another_movie(client):
     # 300
     movie_id = "573a13b1f29313caabd36321"
     result = get_movie(movie_id)
-    assert len(result.get('comments', [])) == 409
+    assert len(result.get('comments', [])) == 145
 
 
 @pytest.mark.get_comments
@@ -30,8 +30,6 @@ def test_comments_should_be_sorted_by_date(client):
     # in order from most to least recent
     movie_ids = [
         "573a1391f29313caabcd8414",
-        "573a1391f29313caabcd9058",
-        "573a1391f29313caabcd91ed",
         "573a1392f29313caabcd9d4f",
         "573a1392f29313caabcdae3d",
         "573a1392f29313caabcdb40b",
