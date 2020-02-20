@@ -161,6 +161,7 @@ def get_movies_faceted(filters, page, movies_per_page):
     # pipeline.extend(...)
 
     try:
+        pipeline.extend([skip_stage, limit_stage, facet_stage])
         movies = list(db.movies.aggregate(pipeline, allowDiskUse=True))[0]
         count = list(db.movies.aggregate(counting, allowDiskUse=True))[
             0].get("count")
